@@ -1,10 +1,10 @@
 # Reto #5 // Diego Arévalo
 Solución del cinco uno de Programación Orientada a Objetos 
 
-## `Un único módulo dentro del paquete Shape`
+## `Un único módulo dentro del paquete shape_all`
 
 ```
-estructura_archivos/
+shape_all/
 |   ├── __init__.py
 │   └── shape.py
 └── main_all.py
@@ -253,7 +253,7 @@ class TriRectangle(triangle):
         return angle1, angle2, angle3
 ```
 
-El contenido de "main.py" será:
+El contenido de "main_all.py" en el cual se harán todas las importaciones será:
 
 ```python
 import os
@@ -322,10 +322,10 @@ shape_obj.edges()
 print()
 ```
 
-## `Módulos individuales que importen Shape y heredan de él`
+## `Módulos individuales que importen shape_each y heredan de él`
 
 ```
-estructura_archivos/
+shape_each/
 |   ├── __init__.py
 |   ├── line.py
 |   ├── point.py
@@ -610,4 +610,78 @@ class shape:
         pass
 ```
 
+El contenido de "main_each.py" en el cual se harán todas las importaciones será:
+
+```python
+import os
+
+from shape_each.rectangle import *
+from shape_each.square import *
+from shape_each.triangle import *
+from shape_each.point import *
+from shape_each.line import *
+from shape_each.gen_shape import *
+
+
+
+os.system("cls")
+
+# Create a shape from user input
+str = " SHAPE CREATOR "
+print(str.center(70, "-"))
+figure = input("\nEnter the shape type (rectangle, square, triangle): ")
+
+if figure == "rectangle":
+    width = float(input("\nEnter the width of the rectangle: "))
+    height = float(input("\nEnter the height of the rectangle: "))
+    center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+    shape_obj = rectangle(width, height, center)
+
+elif figure == "square":
+    side = float(input("\nEnter the side length of the square: "))
+    center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+    shape_obj = square(side, center)
+
+elif figure == "triangle":
+    triangle_type = input("\nEnter the triangle type (isoceles, equilateral, scalene, rectangular): ")
+
+    if triangle_type == "isoceles":
+        side1 = float(input("\nEnter the length of side 1: "))
+        side2 = float(input("\nEnter the length of side 2: "))
+        center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+        shape_obj = isoceles(side1, side2, center)
+
+    elif triangle_type == "equilateral":
+        side = float(input("\nEnter the side length: "))
+        center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+        shape_obj = equilateral(side, center)
+
+    elif triangle_type == "scalene":
+        side1 = float(input("\nEnter the length of side 1: "))
+        side2 = float(input("\nEnter the length of side 2: "))
+        side3 = float(input("\nEnter the length of side 3: "))
+        center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+        shape_obj = scalene(side1, side2, side3, center)
+
+    elif triangle_type == "rectangular":
+        opposite = float(input("\nEnter the length of the opposite side: "))
+        adjacent = float(input("\nEnter the length of the adjacent side: "))
+        hypotenuse = float(input("\nEnter the length of the hypotenuse: "))
+        center = point(float(input("\nEnter the x coordinate of the center: ")), float(input("\nEnter the y coordinate of the center: ")))
+        shape_obj = TriRectangle(opposite, adjacent, hypotenuse, center)
+
+    else:
+        print("\nInvalid triangle type")
+
+else:
+    print("\nInvalid shape type")
+
+print("\nShape created:", figure)
+print("Area:", round(shape_obj.compute_area(), 2))
+print("Perimeter:", round(shape_obj.compute_perimeter(), 2))
+print("Inner Angles:", tuple(round(angle, 2) for angle in shape_obj.compute_inner_angle()))
+shape_obj.vertices()
+shape_obj.edges()
+print()
+```
 > :shipit: Diego Alejandro Arévalo Guevara. March 28, 2024.
