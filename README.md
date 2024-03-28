@@ -1,5 +1,5 @@
 # Reto #5 // Diego Arévalo
-Solución del cinco uno de Programación Orientada a Objetos 
+Solución del reto cinco de Programación Orientada a Objetos 
 
 ## `Un único módulo dentro del paquete shape_all`
 
